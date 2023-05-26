@@ -39,21 +39,14 @@ import pandas as pd
 import snowflake.connector
 
 
-# my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-# my_cur = my_cnx.cursor()
-# my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-# my_data_row = my_cur.fetchone()
-# streamlit.text("Hello from Snowflake:")
-# streamlit.text(my_data_row)
-ctx = snowflake.connector.connect(
-    user='jtkim',
-    password='tptkdwlqo13$5M',
-    account='AH53246.ap-northeast-2.aws',
-    database = 'PBEES'
-    )
-cs = ctx.cursor()
-cs.execute("SELECT * from EMP.MANAGER")
-cs.fetchone()
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+streamlit.text("Hello from Snowflake:")
+streamlit.text(my_data_row)
+
+
 
 
 
