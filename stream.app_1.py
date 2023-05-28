@@ -47,12 +47,14 @@ fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.
 fruits_to_show = my_fruit_list.loc[fruits_selected] ## loc[:,'fruits_selected'] 
 streamlit.dataframe(fruits_to_show)
 
-# ▶▶▶▶▶▶▶▶▶▶ Lesson 7-[]
+# ▶▶▶▶▶▶▶▶▶▶ Lesson 9-[]
 # ----------------- 🥋 Same common ------------------------------------------------------
 
 streamlit.header("Fruityvice Fruit Advice!")
 fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
 streamlit.write('The user entered ', fruit_choice)
+
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 
 # fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi") -- 제거
 # streamlit.text(fruityvice_response) -- 제거 
