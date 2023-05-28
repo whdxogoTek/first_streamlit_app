@@ -153,9 +153,9 @@ if streamlit.button('Add a Fruit to the List'):
 # streamlit.header("The fruit load list contains:")
 # streamlit.dataframe(my_data_rows) 
 
-# # --- Challenge_1 
-# add_my_fruit = streamlit.text_input('What fruit would you like information about?','jackfruit')
-# streamlit.write('Theanks for adding jackfruit', add_my_fruit)
+ # --- Challenge_1 
+add_my_fruit = streamlit.text_input('What fruit would you like information about?','jackfruit')
+streamlit.write('Theanks for adding jackfruit', add_my_fruit)
 
 #---------------------------------------------------------------------------------------------------------
 
