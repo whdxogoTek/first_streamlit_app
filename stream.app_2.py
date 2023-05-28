@@ -46,22 +46,22 @@ fruits_to_show = my_fruit_list.loc[fruits_selected] ## loc[:,'fruits_selected']
 
 streamlit.dataframe(fruits_to_show)
 
-# ▶▶▶▶▶▶▶▶▶▶ Lesson 9-[]
+# ▶▶▶▶▶▶▶▶▶▶ Lesson 9-[] BEFORE
 # ----------------- 🥋 Same common ------------------------------------------------------
 
-streamlit.header("Fruityvice Fruit Advice!")
-fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
-streamlit.write('The user entered ', fruit_choice)
+# streamlit.header("Fruityvice Fruit Advice!")
+# fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
+# streamlit.write('The user entered ', fruit_choice)
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
+# fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 
-# fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi") -- 제거
-# streamlit.text(fruityvice_response) -- 제거 
+# # fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi") -- 제거
+# # streamlit.text(fruityvice_response) -- 제거 
 
-# write your own comment what does the next line do? 
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# write your own comment - what does this do?
-streamlit.dataframe(fruityvice_normalized)
+# # write your own comment what does the next line do? 
+# fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+# # write your own comment - what does this do?
+# streamlit.dataframe(fruityvice_normalized)
 
 # ▶▶▶▶▶▶▶▶▶▶ Lesson 12-4
 #--------------------- 🥋 Let's Query Our Trial Account Metadata ------------------------------------
@@ -105,7 +105,7 @@ streamlit.text(my_data_row)
 # -------------------------- 🥋 재구성된 버전을 실행하고 여전히 작동하는지 확인 -----------------------------------
 # streamlit 가서 확인중... 
 
-# ▶▶▶▶▶▶▶▶▶▶ Lesson 12-[] 
+# ▶▶▶▶▶▶▶▶▶▶ Lesson 12-[] AFTER 
 # ------------------------------ 🥋 Fruityvice 코드를 Try-Except로 이동(중첩된 If-Else 포함) ---------------------
 # New Section 
 streamlit.header("Fruityvice Fruit Advice!")
