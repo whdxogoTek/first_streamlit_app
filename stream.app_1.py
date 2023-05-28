@@ -78,9 +78,13 @@ streamlit.text(my_data_row)
 # ▶▶▶▶▶▶▶▶▶▶ Lesson 12-5
 # --------------------- 🥋 Oops! Let's Get All the Rows, Not Just One ----------------------------------
 my_cur.execute("select * from fruit_load_list")
-my_data_rows = my_cur.fetchall()
+my_data_rows = my_cur.fetchall() # 한 번에 모든 로우를 읽기 위해서는 fetchall 메서드
 streamlit.header("The fruit load list contains:")
 streamlit.dataframe(my_data_rows)
 
+# ▶▶▶▶▶▶▶▶▶▶ Lesson 12-[]
+# --------------------- 🎯 Can You Add A Second Text Entry Box?  ----------------------------------
+add_my_fruit = streamlit.text_input('What fruit would you like add?','jackfruit')
+streamlit.write('Theanks for adding jackfruit', add_my_fruit)
 
 
