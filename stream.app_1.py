@@ -25,6 +25,7 @@
 
 # ▶▶▶▶▶▶▶▶▶▶ Lesson 12-[]
 # ----------------- 🥋 Same common ------------------------------------------------------
+import streamlit 
 import pandas
 import requests
 import snowflake.connector 
