@@ -95,7 +95,7 @@ streamlit.write('Thanks for adding', add_my_fruit)
 my_cur.execute("insert into fruit_load_list values('from streamlit')")
 
 # -------------------------🥋 Add a STOP Command to Focus Our Attention---------------------------------------
-streamlit.stop()
+# streamlit.stop()
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_data_row = my_cur.fetchone()
@@ -140,19 +140,4 @@ try:
         streamlit.error("Please select a fruit to get information.")
     else:   
           back_from_function = get_fruityvice_data(fruit_choice)
-          streamlit.dataframe(back_from_function)
-
-         
-         
-  
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
+          streamlit.dataframe(back_from_function)        
