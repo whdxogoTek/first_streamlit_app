@@ -164,7 +164,7 @@ except URLError as e:
 
 # ▶▶▶▶▶▶▶▶▶▶ Lesson 12-[] AFTER 
 # ------------------- 🥋 과일 로드 목록 쿼리를 이동하고 버튼 동작으로 로드 --------------------
-streamlit.header("The fruit load list contains:")
+streamlit.header("The fruit load list contains:") # View Our Fruist List - Add Your Favorites! (DORA)
 # Snowflake-related funtions
 def get_fruit_load_list():
    with my_cnx.cursor() as my_cur: 
@@ -175,6 +175,7 @@ def get_fruit_load_list():
 if streamlit.button("Get Fruit Load List"): 
       my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
       my_data_rows = get_fruit_load_list()
+      # my_cnx.close() --- DORA  
       streamlit.dataframe(my_data_rows)
 
 streamlit.stop()
@@ -194,3 +195,34 @@ if streamlit.button("Get Fruit Load List"):
       streamlit.dataframe(my_data_rows)
 
 streamlit.stop()
+
+
+-------------------------------- DROA ------------------
+def insert_row_snowflake(new_fruit):
+    with my_cnx.cursor() as my_cur:
+        my_cur.execute("insert into fruit_load_list values ('" + ("jackfruit"), ("papaya") ("guava"), ("kiwi") + "')")
+        return "Thanks for adding " + new_fruit
+
+
+
+
+
+# # Inserting new fruits
+# fruits_to_insert = ["jackfruit", "papaya", "guava", "kiwi"]
+# for fruit in fruits_to_insert:
+#     insert_row_snowflake(fruit)
+
+# # Removing "test" and "from streamlit" rows
+# with my_cnx.cursor() as my_cur:
+#     my_cur.execute("DELETE FROM fruit_load_list WHERE fruit_name IN ('test', 'from streamlit')")
+
+
+# ------------------------------------------------------------------------------------------------------
+# insert into fruit_load_list values ('test') ; 
+# select * from fruit_load_list ; 
+
+# delete from fruit_load_list
+# where fruit_name like 'test'
+# or fruit_name like 'from streamlit' ; 
+
+
