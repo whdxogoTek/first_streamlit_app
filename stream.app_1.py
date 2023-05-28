@@ -43,6 +43,7 @@ my_fruit_list = my_fruit_list.set_index('Fruit')
 
 fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado', 'Strawberries'])
 fruits_to_show = my_fruit_list.loc[fruits_selected] ## loc[:,'fruits_selected'] 
+
 streamlit.dataframe(fruits_to_show)
 
 # ▶▶▶▶▶▶▶▶▶▶ Lesson 9-[]
@@ -93,6 +94,14 @@ streamlit.write('Thanks for adding', add_my_fruit)
 # This will not work correctly, but just go with it for now 
 my_cur.execute("insert into fruit_load_list values('from streamlit')")
 
+-------------------------🥋 Add a STOP Command to Focus Our Attention---------------------------------------
+streamlit.stop()
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_data_row = my_cur.fetchone()
+streamlit.text("Hello from Snowflake:")
+streamlit.text(my_data_row)
 
-
+-------------------------- 🥋 재구성된 버전을 실행하고 여전히 작동하는지 확인 -----------------------------------
+# streamlit 가서 확인중... 
 
