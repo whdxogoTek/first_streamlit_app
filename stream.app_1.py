@@ -8,9 +8,7 @@
 # 	FRUIT_NAME VARCHAR(25)
 # );
 
-
 # ----------------- 🥋 Add Rows to the Fruit Load List Table -----------------------------------
-
 # insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST
 # values ('banana')
 # , ('cherry')
@@ -64,8 +62,6 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
 streamlit.dataframe(fruityvice_normalized)
 
-
-
 # ▶▶▶▶▶▶▶▶▶▶ Lesson 12-4
 #--------------------- 🥋 Let's Query Our Trial Account Metadata ------------------------------------
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
@@ -86,5 +82,17 @@ streamlit.dataframe(my_data_rows)
 # --------------------- 🎯 Can You Add A Second Text Entry Box?  ----------------------------------
 add_my_fruit = streamlit.text_input('What fruit would you like add?','jackfruit')
 streamlit.write('Theanks for adding jackfruit', add_my_fruit)
+
+# ▶▶▶▶▶▶▶▶▶▶ Lesson 12-[] 🥋 Time to Tidy Up? 
+# -----------------------🥋 Write Code to Add Rows to Our Fruit List in Snowflake-------------------------
+# --- insert into fruit_load_list values ('test') ; 
+# --- select * 
+# --- from fruit_load_list ; 
+
+streamlit.write('Thanks for adding', add_my_fruit)
+# This will not work correctly, but just go with it for now 
+my_cur.execute("insert into fruit_load_list values('from streamlit')")
+
+
 
 
