@@ -105,7 +105,7 @@ streamlit.text(my_data_row)
 # -------------------------- 🥋 재구성된 버전을 실행하고 여전히 작동하는지 확인 -----------------------------------
 # streamlit 가서 확인중... 
 
-# ▶▶▶▶▶▶▶▶▶▶ Lesson 12-[] AFTER 
+# ▶▶▶▶▶▶▶▶▶▶ Lesson 12-[] BEFORE & AFTER 
 # ------------------------------ 🥋 Fruityvice 코드를 Try-Except로 이동(중첩된 If-Else 포함) ---------------------
 # New Section 
 streamlit.header("Fruityvice Fruit Advice!")
@@ -123,6 +123,24 @@ except URLError as e:
     streamlit.error("An error occurred while retrieving the fruit information.")
    
 
+
+# ▶▶▶▶▶▶▶▶▶▶ Lesson 12-[] AFTER 
+# ------------------------------🥋 함수 만들기  ------------------------------------------
+# Create the called a function 
+def get_fruityvice_data(this_fruit_choice):
+      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice) 
+      fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+      return fruityvice_normalized
+
+# New Section 
+streamlit.header("Fruityvice Fruit Advice!")
+try:  
+    fruit_choice = streamlit.text_input('What fruit would you like information about?')
+    if not fruit_choice:
+        streamlit.error("Please select a fruit to get information.")
+    else:   
+            back_from_function = get_fruityvice_data(fruit_choice)
+            streamlit.dataframe(back_from_function) 
          
          
   
