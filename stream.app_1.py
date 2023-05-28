@@ -51,8 +51,10 @@ streamlit.dataframe(fruits_to_show)
 # ----------------- 🥋 Same common ------------------------------------------------------
 
 streamlit.header("Fruityvice Fruit Advice!")
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi")
+fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
+streamlit.write('The user entered ', fruit_choice)
 
+# fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + "kiwi") -- 제거
 # streamlit.text(fruityvice_response) -- 제거 
 
 # write your own comment what does the next line do? 
@@ -60,19 +62,8 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # write your own comment - what does this do?
 streamlit.dataframe(fruityvice_normalized)
 
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+# fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
 
-
-# streamlit.header('Fruityvice Fruit Advice')
-# fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
-# streamlit.write('The user entered ', fruit_choice)
-
-# fruityvice_response = request.get("https://fruityvice.com/api/fruit/" + fruit_choice)
-
-# # write your own comment -what does the next line do? 
-# fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-# # write your own comment - what does this do?
-# streamlit.dataframe(fruityvice_normalized)
 
 
 
