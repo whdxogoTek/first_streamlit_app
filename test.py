@@ -60,6 +60,9 @@ import random
 import random
 import streamlit as streamlit
 
+import random
+import streamlit as streamlit
+
 streamlit.header("The Fruity List Contains:")
 
 def get_test_food():
@@ -74,9 +77,13 @@ def insert_row_snowflake(new_fruit):
 
 add_my_fruit = streamlit.text_input('What food would you like to add?')
 
-if streamlit.button('Get food List'):
+if streamlit.button('Add fruit'):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     streamlit.write(insert_row_snowflake(add_my_fruit))
+    my_cnx.close()
+
+if streamlit.button('Get food List'):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     my_data_rows = get_test_food()
     my_cnx.close()
     streamlit.dataframe(my_data_rows)
@@ -90,6 +97,7 @@ if streamlit.button('Pick a Random Fruit'):
         streamlit.write("Randomly picked fruit:", my_fruit)
     else:
         streamlit.write("Please enter a fruit to randomly select")
+
 
 
 
