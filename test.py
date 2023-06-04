@@ -52,25 +52,8 @@ def select_variable(variables):
     variables.remove(selected_variable)
     return selected_variable
 
-def main():
-    variables = ['a', 'b', 'c']
-    restart = True
 
-    streamlit.title("Variable Selection")
-
-    while restart and variables:
-        selected_variable = select_variable(variables)
-        streamlit.write("Selected variable:", selected_variable)
-
-        user_input = streamlit.radio("Do you want to select another variable?", ("Yes", "No"))
-        if user_input == "No":
-            restart = False
-
-    if not variables:
-        streamlit.write("All variables have been selected.")
-
-if __name__ == "__main__":
-    main()
+select_variable(streamlit.dataframe(my_data_rows))
 
 
 
