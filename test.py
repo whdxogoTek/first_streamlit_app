@@ -9,6 +9,7 @@ import snowflake.connector
 from urllib.error import URLError 
 import seaborn
 import numpy
+import random
 
 
 
@@ -44,36 +45,33 @@ if streamlit.button('Get food List'):
   
   
   # ----------------------------------------------------
-  
 
-def shuffle_and_select(data):
-    # Shuffle the data
-    numpy.random.shuffle(data)
 
-    # Select a random index
-    index = numpy.random.randint(len(data))
-
-    # Return the selected point
-    return data[index]
+def select_variable(variables):
+    selected_variable = random.choice(variables)
+    variables.remove(selected_variable)
+    return selected_variable
 
 def main():
-    streamlit.title("Scatter Plot Game")
+    variables = ['a', 'b', 'c']
+    restart = True
 
-    # Generate initial random data
-    numpy.random.seed(42)
-    data = numpy.random.rand(10, 2)
+    streamlit.title("Variable Selection")
 
-    # Create scatter plot using Seaborn
-    seaborn.scatterplot(data=data[:, 0], y=data[:, 1])
-    streamlit.pyplot()
+    while restart and variables:
+        selected_variable = select_variable(variables)
+        streamlit.write("Selected variable:", selected_variable)
 
-    # Add a button to shuffle and select a point
-    if streamlit.button("Shuffle and Select"):
-        selected_point = shuffle_and_select(data)
-        streamlit.write("Selected Point:", selected_point)
+        user_input = streamlit.radio("Do you want to select another variable?", ("Yes", "No"))
+        if user_input == "No":
+            restart = False
+
+    if not variables:
+        streamlit.write("All variables have been selected.")
 
 if __name__ == "__main__":
     main()
+
 
 
 
