@@ -2,6 +2,11 @@
 # import streamlit
 # import snowflake.connector
 
+import streamlit 
+import pandas
+import requests
+import snowflake.connector 
+from urllib.error import URLError 
 
 streamlit.header("The Fruity List Contains:")
 def get_test_food():
