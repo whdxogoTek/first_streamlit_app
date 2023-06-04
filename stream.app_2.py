@@ -178,30 +178,30 @@ if streamlit.button("Get Fruit Load List"):
       # my_cnx.close() --- DORA  
       streamlit.dataframe(my_data_rows)
 
-streamlit.stop()
-
-# ------------------------------ 🥋 이제 과일 이름 제출을 추가하기 위해 기능과 버튼을 사용하자 -----------------------
-streamlit.header("The fruit load list contains:")
-# Snowflake-related funtions
-def get_fruit_load_list():
-   with my_cnx.cursor() as my_cur: 
-        my_cur.execute("select * from fruit_load_list")
-        return my_cur.fetchall() 
-
-# Add a button to load the fruit 
-if streamlit.button("Get Fruit Load List"): 
-      my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-      my_data_rows = get_fruit_load_list()
-      streamlit.dataframe(my_data_rows)
-
 # streamlit.stop()
 
+# # ------------------------------ 🥋 이제 과일 이름 제출을 추가하기 위해 기능과 버튼을 사용하자 -----------------------
+# streamlit.header("The fruit load list contains:")
+# # Snowflake-related funtions
+# def get_fruit_load_list():
+#    with my_cnx.cursor() as my_cur: 
+#         my_cur.execute("select * from fruit_load_list")
+#         return my_cur.fetchall() 
 
-# -------------------------------- DROA ------------------
-def insert_row_snowflake(new_fruit):
-    with my_cnx.cursor() as my_cur:
-        my_cur.execute("insert into fruit_load_list values ('" + ("jackfruit"), ("papaya") ("guava"), ("kiwi") + "')")
-        return "Thanks for adding " + new_fruit
+# # Add a button to load the fruit 
+# if streamlit.button("Get Fruit Load List"): 
+#       my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+#       my_data_rows = get_fruit_load_list()
+#       streamlit.dataframe(my_data_rows)
+
+# # streamlit.stop()
+
+
+# # -------------------------------- DROA ------------------
+# def insert_row_snowflake(new_fruit):
+#     with my_cnx.cursor() as my_cur:
+#         my_cur.execute("insert into fruit_load_list values ('" + ("jackfruit"), ("papaya") ("guava"), ("kiwi") + "')")
+#         return "Thanks for adding " + new_fruit
 
 # ---------------------------------------------------------------------------------------------------------------------
 streamlit.header("The Fruity List Contains:")
