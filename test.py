@@ -52,8 +52,9 @@ def select_variable(variables):
     variables.remove(selected_variable)
     return selected_variable
 
-streamlit.dataframe(my_data_rows)
-# select_variable(streamlit.dataframe(my_data_rows[:,'0']))
+  
+get_test_food(my_data_rows)
+
 
 
 
