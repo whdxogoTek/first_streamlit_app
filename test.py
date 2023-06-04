@@ -81,9 +81,16 @@ if streamlit.button('Get food List'):
     my_cnx.close()
     streamlit.dataframe(my_data_rows)
 
+random_fruit = streamlit.text_input('Enter a fruit to randomly select')
+
 if streamlit.button('Pick a Random Fruit'):
-    my_fruit = random.choice(add_my_fruit.split(','))
-    streamlit.write("Randomly picked fruit:", my_fruit)
+    if random_fruit:
+        fruits = random_fruit.split(',')
+        my_fruit = random.choice(fruits)
+        streamlit.write("Randomly picked fruit:", my_fruit)
+    else:
+        streamlit.write("Please enter a fruit to randomly select")
+
 
 
 
