@@ -53,7 +53,7 @@ def select_variable(variables):
     return selected_variable
 
 
-select_variable(streamlit.dataframe(my_data_rows))
+select_variable(streamlit.dataframe(my_data_rows[:,'0']))
 
 
 
