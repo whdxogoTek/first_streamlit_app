@@ -130,13 +130,8 @@ my_cur = my_cnx.cursor()
 my_cur.execute("SELECT * FROM test_food")
 
 # Fetch all rows of data
-rows = my_cur.fetchall()
+my_cur.fetchall()
 
-# Convert the data to a Pandas DataFrame
-df = pd.DataFrame(rows, columns=["FOOD_LIST"])
-
-# Display the DataFrame as a table
-st.table(df)
 
 
 
