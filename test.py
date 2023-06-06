@@ -137,7 +137,7 @@ from vega_datasets import data
 import time
 
 source = data.cars()
-chart = st.empty()
+chart = streamlit.empty()
 
 
 for i in source.index:
