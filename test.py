@@ -114,5 +114,6 @@ streamlit.markdown('#### 점심식사 Dataframe:')
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_data_rows = get_test_food()
 my_cnx.close()
-streamlit.dataframe(my_data_rows)
+my_food_list = streamlit.dataframe(my_data_rows)
+streamlit.dataframe(my_food_list.loc[:,'FOOD_LIST'])
 
