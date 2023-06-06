@@ -119,7 +119,7 @@ streamlit.markdown('#### 점심식사 Dataframe:')
 
 def load_data(table_name):
     ## Read in data table
-    st.write(f"Here's some example data from `{table_name}`:")
+    streamlit.write(f"Here's some example data from `{table_name}`:")
     table = session.table(table_name)
     
     ## Do some computation on it
@@ -133,7 +133,7 @@ def load_data(table_name):
 table_name = "PBEES_EMP.PUBLIC.test_food"
 
 ## Display data table
-with st.expander("See Table"):
+with streamlit.expander("See Table"):
     df = load_data(table_name)
     st.dataframe(df)
 
