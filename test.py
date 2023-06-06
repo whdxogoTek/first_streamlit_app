@@ -111,31 +111,12 @@ streamlit.markdown('#### 점심식사 Dataframe:')
 
 
 
-# my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-# my_data_rows = get_test_food()
-# my_cnx.close()
-# my_food_list = streamlit.dataframe(my_data_rows)
-# streamlit.dataframe(my_food_list.iloc[:,0])
-
-def load_data(table_name):
-    ## Read in data table
-    streamlit.write(f"Here's some example data from `{table_name}`:")
-    table = session.table(table_name)
-    
-    ## Do some computation on it
-    table = table.limit(100)
-    
-    ## Collect the results. This will run the query and download the data
-    table = table.collect()
-    return table
-
-
-table_name = "PBEES_EMP.PUBLIC.test_food"
-
-## Display data table
-with streamlit.expander("See Table"):
-    df = load_data(table_name)
-    st.dataframe(df)
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT * FROM test_food")
+my_data_row = my_cur.fetchone()
+streamlit.text("Hello from Snowflake:")
+streamlit.text(my_data_row)
 
 
 
