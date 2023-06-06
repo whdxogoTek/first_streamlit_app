@@ -117,22 +117,6 @@ my_cur.execute("SELECT * FROM test_food")
 my_data_row = my_cur.fetchone()
 streamlit.text(my_data_row)
 
-# Establish connection to Snowflake
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-
-
-# Execute query
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-
-# Execute query
-my_cur.execute("SELECT * FROM test_food")
-
-# Fetch all rows of data
-my_cur.fetchall()
-
-
 
 
 
