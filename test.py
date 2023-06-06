@@ -71,11 +71,23 @@ def get_test_food():
     with my_cnx.cursor() as my_cur:
         my_cur.execute("SELECT * FROM test_food")
         return my_cur.fetchall()
-
+    
+    
 def insert_row_snowflake(new_fruit):
+    if not new_fruit:
+        return "Enter fruits"
+    
     with my_cnx.cursor() as my_cur:
         my_cur.execute("INSERT INTO test_food VALUES ('" + new_fruit + "' )")
+    
     return "Thanks for adding " + new_fruit
+
+    
+    
+# def insert_row_snowflake(new_fruit):
+#     with my_cnx.cursor() as my_cur:
+#         my_cur.execute("INSERT INTO test_food VALUES ('" + new_fruit + "' )")
+#     return "Thanks for adding " + new_fruit
 
 add_my_fruit = streamlit.text_input('What food would you like to add?')
 
