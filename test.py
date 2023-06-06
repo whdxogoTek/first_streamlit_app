@@ -117,7 +117,19 @@ my_cur.execute("SELECT * FROM test_food")
 my_data_row = my_cur.fetchone()
 streamlit.text(my_data_row)
 
+# Establish connection to Snowflake
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
 
+
+# Execute query
+my_cur.execute("SELECT * FROM test_food")
+# Fetch all rows of data
+rows = my_cur.fetchall()
+# Convert the data to a Pandas DataFrame
+df = pd.DataFrame(rows, columns=[desc[0] for desc in my_cur.description])
+# Display the DataFrame as a table
+st.dataframe(df)
 
 
 
