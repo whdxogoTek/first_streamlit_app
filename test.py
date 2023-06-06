@@ -142,7 +142,6 @@ chart = streamlit.empty()
 
 for i in source.index:
     data_to_be_added = source.iloc[0: i + 1, :]
-
     x = alt.Chart(data_to_be_added).mark_circle(size=i * 10).encode(
         x='Horsepower',
         y='Miles_per_Gallon',
