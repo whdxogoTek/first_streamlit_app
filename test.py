@@ -95,8 +95,7 @@ if streamlit.button('Pick a Random Fruit'):
     random_fruit = random.choice(fruits)
     streamlit.write("Randomly picked fruit:", random_fruit)
     
-    
-   
+       
 streamlit.markdown('#### 점심식사 Dataframe:')         
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_data_rows = get_test_food()
