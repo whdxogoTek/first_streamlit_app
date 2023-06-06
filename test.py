@@ -115,5 +115,5 @@ my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_data_rows = get_test_food()
 my_cnx.close()
 my_food_list = streamlit.dataframe(my_data_rows)
-streamlit.dataframe(my_food_list.loc[:,'FOOD_LIST'])
+streamlit.dataframe(my_food_list.iloc[:,0])
 
