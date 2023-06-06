@@ -60,9 +60,12 @@ import streamlit as streamlit
 
 streamlit.title("식사를 합시다. 😎")
 
-streamlit.header('점심 선택도 똑똑하게 우리는 Proven Bees!')
-streamlit.text('🥗 더 이상 고민하는 점심매뉴 그만! 즐겁고 빠르게 점심식사 매뉴를 정해봐요!')
+streamlit.header('점심 매뉴도 똑똑하게! 우리는 Proven Bees!')
+streamlit.text('🥗 더 이상 고민하는 점심매뉴 그만!'
+streamlit.text('🎯 즐겁고 빠르게 점심식사 매뉴를 정해봐요!')
 
+               
+streamlit.header("점심식사 매뉴 추가하기:")               
 def get_test_food():
     with my_cnx.cursor() as my_cur:
         my_cur.execute("SELECT * FROM test_food")
