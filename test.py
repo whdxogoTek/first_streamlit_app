@@ -66,7 +66,8 @@ streamlit.text('🎯 즐겁고 빠르게 점심식사 매뉴를 정해봐요!')
 
                
 streamlit.header("점심식사 매뉴 추가하기:")               
-def get_test_food():
+
+               def get_test_food():
     with my_cnx.cursor() as my_cur:
         my_cur.execute("SELECT * FROM test_food")
         return my_cur.fetchall()
