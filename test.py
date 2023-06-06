@@ -94,8 +94,17 @@ if streamlit.button('Pick a Random Fruit'):
     fruits = [row[0] for row in my_data_rows]
     random_fruit = random.choice(fruits)
     streamlit.write("Randomly picked fruit:", random_fruit)
-
-
+    
+    
+   
+streamlit.markdown('#### 점심식사 Dataframe:')         
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_data_rows = get_test_food()
+my_cnx.close()
+my_food_list = streamlit.dataframe(my_data_rows)
+my_food_list_selected = streamlit.multiselect("Pick 식당:", list(my_food_list.index))'])
+my_food_list_show = my_food_list.loc[my_food_list_selected]
+streamlit.dataframe(my_food_list_show)
 
 
 
