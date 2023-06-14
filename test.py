@@ -130,7 +130,12 @@ my_data_row = my_cur.fetchone()
 streamlit.text(my_data_row)
 
 
+import numpy as np
+df = pd.DataFrame(
+    np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
+    columns=['lat', 'lon'])
 
+streamlit.map(df)
 
 # ------------------------------------------------------------------------------------------------
 
