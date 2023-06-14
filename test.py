@@ -106,7 +106,8 @@ if streamlit.button('Pick a Random Fruit'):
     fruits = [row[0] for row in my_data_rows]
     random_fruit = random.choice(fruits)
     streamlit.write("Randomly picked fruit:", random_fruit)
-    
+    # as date해서 오늘날짜 
+    # 그렇게 선택 데이터베이스 쌓인것은 따로 또 만들어야 겠네 
        
 streamlit.markdown('#### 점심식사 Dataframe:')         
 # my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
