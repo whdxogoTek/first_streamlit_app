@@ -65,7 +65,7 @@ streamlit.markdown('#### 점심 메뉴도 똑똑하게! 우리는 Proven Bees!')
 streamlit.text('🥗 더 이상 고민하는 점심메뉴 그만!')
 streamlit.text('🎯 즐겁고 빠르게 점심식사 메뉴를 정해봐요!')     
 
-streamlit.markdown('#### 점심식사 메메뉴 추가하기:')              
+streamlit.markdown('#### 점심식사 메뉴 추가하기:')              
 
 def get_test_food():
     with my_cnx.cursor() as my_cur:
