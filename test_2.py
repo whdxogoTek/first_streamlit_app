@@ -17,7 +17,6 @@ st.markdown('#### 점심식당 추가하기:')
 st.text('📝 식당을 추가해봅시다.')  
 
 
-# -------------------------------------------------------------------------
 import streamlit as st
 import snowflake.connector
 import pandas as pd
@@ -43,8 +42,52 @@ if st.button('Get Food List'):
     select_query = "SELECT * FROM FACT_RESTAURANT"
     cursor.execute(select_query)
     results = cursor.fetchall()
-    df = pd.DataFrame(results, columns=['Restaurant_ID', 'Restaurant_Type', 'Restaurant_Add_Name'])
-    st.write(df)
+
+    # Check if results exist and display error message if empty
+    if len(results) == 0:
+        st.warning('No data found.')
+
+    else:
+        try:
+            df = pd.DataFrame(results, columns=['Restaurant_ID', 'Restaurant_Type', 'Restaurant_Add_Name'])
+            st.write(df)
+        except Exception as e:
+            st.error(f"Error occurred while creating DataFrame: {e}")
+
+# Close the cursor and connection
+cursor.close()
+my_cnx.close()
+
+
+
+# -------------------------------------------------------------------------
+# import streamlit as st
+# import snowflake.connector
+# import pandas as pd
+
+# # Establish Snowflake connection
+# my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+# cursor = my_cnx.cursor()
+
+# # Create Streamlit input fields
+# restaurant_name = st.text_input('Enter the name of the restaurant')
+# restaurant_type = st.text_input('Write down the restaurant type')
+# added_by = st.text_input('Write down your name')
+
+# # Insert data into Snowflake table upon button press
+# if st.button('Add Restaurant'):
+#     insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, Restaurant_Type, Restaurant_Add_Name) VALUES ('{restaurant_name}', '{restaurant_type}', '{added_by}')"
+#     cursor.execute(insert_query)
+#     my_cnx.commit()
+#     st.success('Restaurant added successfully!')
+
+# # Display accumulated data upon button press
+# if st.button('Get Food List'):
+#     select_query = "SELECT * FROM FACT_RESTAURANT"
+#     cursor.execute(select_query)
+#     results = cursor.fetchall()
+#     df = pd.DataFrame(results, columns=['Restaurant_ID', 'Restaurant_Type', 'Restaurant_Add_Name'])
+#     st.write(df)
 
 
 # -------------------------------------------------------------------------------
