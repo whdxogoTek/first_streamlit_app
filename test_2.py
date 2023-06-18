@@ -29,7 +29,7 @@ def insert_row_snowflake(new_RESTAURANT):
     with my_cnx.cursor() as my_cur:
         my_cur.execute("INSERT INTO test_food VALUES ('" +new_RESTAURANT+ "' )")
     
-    return "식당을 추가했습니다~🤗" 
+    return "Thanks for adding " + new_RESTAURANT
 
 # -----------------------------------------------------------------
 Data_Restaurant_ID = streamlit.text_input('식당을 추가하세요')
