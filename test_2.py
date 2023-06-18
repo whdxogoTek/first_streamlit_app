@@ -27,7 +27,7 @@ def insert_row_snowflake(new_fruit):
         return "Enter fruits"
     
     with my_cnx.cursor() as my_cur:
-        my_cur.execute("INSERT INTO FACT_RESTAURANT VALUES ('" + new_fruit + "' )")
+        my_cur.execute("INSERT INTO Fact_Restaurant(Restaurant_ID) VALUES ('" + new_fruit + "' )")
     
     return "Thanks for adding " + new_fruit
 add_my_fruit = streamlit.text_input('What food would you like to add?')
