@@ -17,7 +17,7 @@ streamlit.markdown('#### 점심식당 추가하기:')
 streamlit.text('📝 식당을 추가해봅시다.')  
 
 # ------------------------------------------------------------
-def get_test_food():
+def get_test_RESTAURANT():
     with my_cnx.cursor() as my_cur:
         my_cur.execute("SELECT * FROM FACT_RESTAURANT")
         return my_cur.fetchall()
@@ -30,3 +30,13 @@ def insert_row_snowflake(new_RESTAURANT):
         my_cur.execute("INSERT INTO test_food VALUES ('" +new_RESTAURANT+ "' )")
     
     return "식당을 추가했습니다~🤗" 
+
+# -----------------------------------------------------------------
+add_my_RESTAURANT = streamlit.text_input('What food would you like to add?')
+
+if streamlit.button('Get food List'):
+    my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+    streamlit.write(insert_row_snowflake(add_my_RESTAURANT))
+    my_data_rows = get_test_RESTAURANT()
+    my_cnx.close()
+    streamlit.dataframe(my_data_rows)
