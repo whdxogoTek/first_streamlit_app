@@ -30,11 +30,22 @@ restaurant_type = st.text_input('Write down the restaurant type')
 added_by = st.text_input('Write down your name')
 
 # Insert data into Snowflake table upon button press
+# if st.button('Add Restaurant'):
+#     insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, Restaurant_Type, Restaurant_Add_Name) VALUES ('{restaurant_name}', '{restaurant_type}', '{added_by}')"
+#     cursor.execute(insert_query)
+#     my_cnx.commit()
+#     st.success('Restaurant added successfully!')
+
+# Insert data into Snowflake table upon button press
 if st.button('Add Restaurant'):
-    insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, Restaurant_Type, Restaurant_Add_Name) VALUES ('{restaurant_name}', '{restaurant_type}', '{added_by}')"
+    # Get the current date
+    current_date = date.today().isoformat()
+
+    insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, data_added_ID, Restaurant_Add_Name, Restaurant_Type) VALUES ('{restaurant_name}', '{current_date}', '{added_by}', '{restaurant_type}')"
     cursor.execute(insert_query)
     my_cnx.commit()
     st.success('Restaurant added successfully!')
+
 
 # Display accumulated data upon button press
 if st.button('Get Food List'):
