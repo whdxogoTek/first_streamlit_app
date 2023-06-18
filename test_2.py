@@ -60,7 +60,8 @@ if st.button('Pick a Random Restaurant'):
     select_query = "SELECT Restaurant_ID FROM FACT_RESTAURANT"
     cursor.execute(select_query)
     results = cursor.fetchall()
-    print(results)
+    random_restaurant = random.choice(results)[0]
+    st.write("Randomly picked restaurant:", random_restaurant)
 
 # -------------------------------------------------------------------------------
 
