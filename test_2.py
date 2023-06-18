@@ -21,6 +21,9 @@ cursor = my_cnx.cursor()
 query = "SELECT * FROM FACT_RESTAURANT"
 cursor.execute(query)
 
+results = cursor.fetchall()
+for row in results:
+    print(row)
 
 
 
