@@ -1,6 +1,4 @@
 
-import streamlit 
-import pandas
 import requests
 import snowflake.connector 
 from urllib.error import URLError 
@@ -16,14 +14,77 @@ streamlit.text('🎯 즐겁고 빠르게 점심식당을 정해봐요!')
 streamlit.markdown('#### 점심식당 추가하기:')      
 streamlit.text('📝 식당을 추가해봅시다.')  
 
+import streamlit as st
+import pandas as pd
+
+# -------------------------------------------------------------------------
+# Establish Snowflake connection
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 cursor = my_cnx.cursor()
-query = "SELECT * FROM FACT_RESTAURANT"
-cursor.execute(query)
 
-results = cursor.fetchall()
-for row in results:
-    print(row)
+# Create Streamlit input fields
+restaurant_name = streamlit.text_input('Enter the name of the restaurant')
+restaurant_type = streamlit.text_input('Write down the restaurant type')
+added_by = streamlit.text_input('Write down your name')
+
+# Insert data into Snowflake table upon button press
+if streamlit.button('Add Restaurant'):
+    insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, Restaurant_Type, Restaurant_Add_Name) VALUES ('{restaurant_name}', '{restaurant_type}', '{added_by}')"
+    cursor.execute(insert_query)
+    my_cnx.commit()
+    streamlit.success('Restaurant added successfully!')
+
+# Display accumulated data upon button press
+if streamlit.button('Get Food List'):
+    select_query = "SELECT * FROM FACT_RESTAURANT"
+    cursor.execute(select_query)
+    results = cursor.fetchall()
+    df = pd.DataFrame(results, columns=['Restaurant_ID', 'Restaurant_Type', 'Restaurant_Add_Name'])
+    streamlit.write(df)
+
+# -------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+# cursor = my_cnx.cursor()
+# query = "SELECT * FROM FACT_RESTAURANT"
+# cursor.execute(query)
+
+# results = cursor.fetchall()
+# for row in results:
+#     print(row)
 
 
 
