@@ -32,7 +32,9 @@ def insert_row_snowflake(new_RESTAURANT):
     return "식당을 추가했습니다~🤗" 
 
 # -----------------------------------------------------------------
-add_my_RESTAURANT = streamlit.text_input('What food would you like to add?')
+add_my_RESTAURANT = streamlit.text_input('식당을 추가하세요')
+add_my_RESTAURANT = streamlit.text_input('식당 종류를 작성해주세요')
+add_my_RESTAURANT = streamlit.text_input('식당을 추가한 당신의 성함을 작성해주세요')
 
 if streamlit.button('Get food List'):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
