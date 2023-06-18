@@ -19,7 +19,7 @@ st.text('📝 식당을 추가해봅시다.')
 
 # -------------------------------------------------------------------------
 # Establish Snowflake connection
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 cursor = my_cnx.cursor()
 
 # Create Streamlit input fields
