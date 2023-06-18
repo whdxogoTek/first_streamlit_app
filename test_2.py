@@ -15,11 +15,10 @@ st.text('🎯 즐겁고 빠르게 점심식당을 정해봐요!')
 
 st.markdown('#### 점심식당 추가하기:')      
 st.text('📝 식당을 추가해봅시다.')  
-
+# -------------------------------------------------------------------------
 import streamlit as st
 import snowflake.connector
 import pandas as pd
-from datetime import date
 
 # Establish Snowflake connection
 my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
@@ -32,15 +31,7 @@ added_by = st.text_input('Write down your name')
 
 # Insert data into Snowflake table upon button press
 if st.button('Add Restaurant'):
-    # Get the current date
-    current_date = date.today().isoformat()
-
-    # Get the maximum Name_ID value from the table
-    cursor.execute("SELECT MAX(Name_ID) FROM FACT_RESTAURANT")
-    max_name_id = cursor.fetchone()[0]
-    name_id = max_name_id + 1 if max_name_id else 1
-
-    insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, data_add_ID, Name_ID, Restaurant_Add_Name, Restaurant_Type) VALUES ('{restaurant_name}', '{current_date}', {name_id}, '{added_by}', '{restaurant_type}')"
+    insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, Restaurant_Type, Restaurant_Add_Name) VALUES ('{restaurant_name}', '{restaurant_type}', '{added_by}')"
     cursor.execute(insert_query)
     my_cnx.commit()
     st.success('Restaurant added successfully!')
@@ -50,52 +41,8 @@ if st.button('Get Food List'):
     select_query = "SELECT * FROM FACT_RESTAURANT"
     cursor.execute(select_query)
     results = cursor.fetchall()
-
-    # Check if results exist and display error message if empty
-    if len(results) == 0:
-        st.warning('No data found.')
-
-    else:
-        try:
-            df = pd.DataFrame(results, columns=['Restaurant_ID', 'data_add_ID', 'Name_ID', 'Restaurant_Add_Name', 'Restaurant_Type'])
-            st.write(df)
-        except Exception as e:
-            st.error(f"Error occurred while creating DataFrame: {e}")
-
-# Close the cursor and connection
-cursor.close()
-my_cnx.close()
-
-
-
-# -------------------------------------------------------------------------
-# import streamlit as st
-# import snowflake.connector
-# import pandas as pd
-
-# # Establish Snowflake connection
-# my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-# cursor = my_cnx.cursor()
-
-# # Create Streamlit input fields
-# restaurant_name = st.text_input('Enter the name of the restaurant')
-# restaurant_type = st.text_input('Write down the restaurant type')
-# added_by = st.text_input('Write down your name')
-
-# # Insert data into Snowflake table upon button press
-# if st.button('Add Restaurant'):
-#     insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, Restaurant_Type, Restaurant_Add_Name) VALUES ('{restaurant_name}', '{restaurant_type}', '{added_by}')"
-#     cursor.execute(insert_query)
-#     my_cnx.commit()
-#     st.success('Restaurant added successfully!')
-
-# # Display accumulated data upon button press
-# if st.button('Get Food List'):
-#     select_query = "SELECT * FROM FACT_RESTAURANT"
-#     cursor.execute(select_query)
-#     results = cursor.fetchall()
-#     df = pd.DataFrame(results, columns=['Restaurant_ID', 'data_added_ID', 'Name_ID', 'Restaurant_Add_Name','Restaurant_Type'])
-#     st.write(df)
+    df = pd.DataFrame(results, columns=['Restaurant_ID', 'data_added_ID','Restaurant_Add_Name','Restaurant_Type'])
+    st.write(df)
 
 # -------------------------------------------------------------------------------
 
