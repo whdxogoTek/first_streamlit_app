@@ -16,6 +16,7 @@ streamlit.text('🎯 즐겁고 빠르게 점심식당을 정해봐요!')
 streamlit.markdown('#### 점심식당 추가하기:')      
 streamlit.text('📝 식당을 추가해봅시다.')  
 
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 cursor = my_cnx.cursor()
 query = "SELECT * FROM FACT_RESTAURANT"
 cursor.execute(query)
