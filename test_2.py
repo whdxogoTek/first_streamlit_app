@@ -45,7 +45,7 @@ if st.button('Get Food List'):
     select_query = "SELECT * FROM FACT_RESTAURANT"
     cursor.execute(select_query)
     results = cursor.fetchall()
-    df = pd.DataFrame(results, columns=['Restaurant_ID', 'data_added_ID', 'Name_ID', 'Restaurant_Add_Name','Restaurant_Type']
+    df = pd.DataFrame(results, columns=['Restaurant_ID', 'data_added_ID', 'Name_ID', 'Restaurant_Add_Name','Restaurant_Type'])
     st.write(df)
 
 # -------------------------------------------------------------------------------
