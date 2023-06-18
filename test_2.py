@@ -23,8 +23,8 @@ def get_test_RESTAURANT():
         return my_cur.fetchall()
     
 def insert_row_snowflake(new_RESTAURANT):
-    if not new_RESTAURANT:
-        return "식당을 입력하세요!"
+    #if not new_RESTAURANT:
+    #    return "식당을 입력하세요!"
     
     with my_cnx.cursor() as my_cur:
         my_cur.execute("INSERT INTO test_food VALUES ('" +new_RESTAURANT+ "' )")
