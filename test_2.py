@@ -16,7 +16,7 @@ streamlit.text('🎯 즐겁고 빠르게 점심식당을 정해봐요!')
 streamlit.markdown('#### 점심식당 추가하기:')      
 streamlit.text('📝 식당을 추가해봅시다.')  
 
-------------------------------------------------------------
+# ------------------------------------------------------------
 def get_test_food():
     with my_cnx.cursor() as my_cur:
         my_cur.execute("SELECT * FROM FACT_RESTAURANT")
