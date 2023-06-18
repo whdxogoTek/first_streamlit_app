@@ -60,7 +60,8 @@ if st.button('Get Food List'):
     df = pd.DataFrame(results, columns=['Restaurant_ID', 'data_added_ID','Restaurant_Add_Name','Restaurant_Type'])
     st.write(df)
 
-st.text('👍 이제 점심식당을 골라볼까요? 😋')    
+st.markdown('#### 오늘의 점심식당 Pick!:')     
+st.text('이제 점심식당을 골라볼까요? 😋')    
 
 if st.button('Pick a Random Restaurant'):
     select_query = "SELECT Restaurant_ID FROM FACT_RESTAURANT"
