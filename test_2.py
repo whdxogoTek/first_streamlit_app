@@ -70,6 +70,7 @@ if st.button('Pick a Random Restaurant'):
     random_restaurant = random.choice(results)[0]
     st.write("Randomly picked restaurant:", random_restaurant)
 
+    # f"INSERT INTO FACT_RESTAURANT (R 이런거 하면 될듯 
 # -------------------------------------------------------------------------------
 
 
