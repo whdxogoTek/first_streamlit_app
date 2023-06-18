@@ -7,6 +7,7 @@ from urllib.error import URLError
 import seaborn
 import numpy
 import random
+from datetime import date
 
 st.title("식사를 합시다. 😎")
 st.markdown('#### 점심식당 정하기!')    
