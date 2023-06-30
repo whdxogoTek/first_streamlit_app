@@ -36,7 +36,7 @@ added_by = st.text_input('Write down your name')
 
 # Insert data into Snowflake table upon button press
 # if st.button('Add Restaurant'):
-#     insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, Restaurant_Type, Restaurant_Add_Name) VALUES ('{restaurant_name}', '{restaurant_type}', '{added_by}')"
+#     insert_query = f"INSERT INTO FACT_RESTAURANT (F_Restaurant_ID, F_Restaurant_Type, F_Restaurant_Add_Name) VALUES ('{restaurant_name}', '{restaurant_type}', '{added_by}')"
 #     cursor.execute(insert_query)
 #     my_cnx.commit()
 #     st.success('Restaurant added successfully!')
@@ -46,7 +46,7 @@ if st.button('Add Restaurant'):
     # Get the current date
     current_date = date.today().isoformat()
 
-    insert_query = f"INSERT INTO FACT_RESTAURANT (Restaurant_ID, data_added_ID, Restaurant_Add_Name, Restaurant_Type) VALUES ('{restaurant_name}', '{current_date}', '{added_by}', '{restaurant_type}')"
+    insert_query = f"INSERT INTO FACT_RESTAURANT (F_Restaurant_ID, F_data_added_ID, F_Restaurant_Add_Name, F_Restaurant_Type) VALUES ('{restaurant_name}', '{current_date}', '{added_by}', '{restaurant_type}')"
     cursor.execute(insert_query)
     my_cnx.commit()
     st.success('Restaurant added successfully!')
@@ -72,7 +72,7 @@ st.text('이제 점심식당을 골라볼까요? 😋')
       
 
 #     current_date_1 = date.today().isoformat()
-#     insert_query_1 = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID) VALUES ('{current_date_1}', '{random_restaurant}')"
+#     insert_query_1 = f"INSERT INTO dimension_visit_table (V_Visit_Date, V_Restaurant_ID) VALUES ('{current_date_1}', '{random_restaurant}')"
 #     cursor.execute(insert_query_1)
 
 # -------------------------------------------------------------------------------
