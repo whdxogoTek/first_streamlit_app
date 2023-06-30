@@ -63,42 +63,21 @@ if st.button('Get Food List'):
 st.markdown('#### 오늘의 점심식당 Pick!:')     
 st.text('이제 점심식당을 골라볼까요? 😋')    
 
-# if st.button('Pick a Random Restaurant'):
-#     select_query = "SELECT Restaurant_ID FROM FACT_RESTAURANT"
-#     cursor.execute(select_query)
-#     results = cursor.fetchall()
-#     random_restaurant = random.choice(results)[0]
-#     st.write("Randomly picked restaurant:", random_restaurant)
+if st.button('Pick a Random Restaurant'):
+    select_query = "SELECT Restaurant_ID FROM FACT_RESTAURANT"
+    cursor.execute(select_query)
+    results = cursor.fetchall()
+    random_restaurant = random.choice(results)[0]
+    st.write("Randomly picked restaurant:", random_restaurant)
+      
 
-#     current_date_1 = date.today().isoformat()
-#     insert_query_1 = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID) VALUES ('{current_date_1}', '{random_restaurant}')"
-#     cursor.execute(insert_query_1)
+    current_date_1 = date.today().isoformat()
+    insert_query_1 = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID) VALUES ('{current_date_1}', '{random_restaurant}')"
+    cursor.execute(insert_query_1)
+    cursor.fetchone()[0]
 # -------------------------------------------------------------------------------
 
 
-
-# ...
-
-import datetime
-
-# ...
-
-if st.button('Pick a Random Restaurant'):
-    # Generate current date
-    current_date = datetime.date.today().isoformat()
-
-    # Check if a record with the same restaurant ID and current date already exists
-    select_query = f"SELECT COUNT(*) FROM dimension_visit_table WHERE Visit_Date = '{current_date}' AND Restaurant_ID = '{random_restaurant}'"
-    cursor.execute(select_query)
-    count = cursor.fetchone()[0]
-
-    if count == 0:
-        # Insert a new record if it doesn't already exist
-        insert_query = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
-        cursor.execute(insert_query)
-        st.write("Randomly picked restaurant:", random_restaurant)
-    else:
-        st.write("Restaurant already picked for today:", random_restaurant)
 
 
 
