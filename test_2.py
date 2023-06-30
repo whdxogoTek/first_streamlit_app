@@ -104,13 +104,13 @@ if st.button('Pick a Random Restaurant'):
     current_date = datetime.date.today().isoformat()
 
     # Check if a record with the same restaurant ID and current date already exists
-    select_query = f"SELECT COUNT(*) FROM dimension_visit_table WHERE D_Visit_Date = '{current_date}' AND D_Restaurant_ID = '{random_restaurant}'"
+    select_query = f"SELECT COUNT(*) FROM dimension_visit_table WHERE V_Visit_Date = '{current_date}' AND V_Restaurant_ID = '{random_restaurant}'"
     cursor.execute(select_query)
     count = cursor.fetchone()[0]
 
     if count == 0:
         # Insert a new record if it doesn't already exist
-        insert_query = f"INSERT INTO dimension_visit_table (D_Visit_Date, D_Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
+        insert_query = f"INSERT INTO dimension_visit_table (V_Visit_Date, V_Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
         cursor.execute(insert_query)
         st.write("Randomly picked restaurant:", random_restaurant)
     else:
