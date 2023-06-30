@@ -71,7 +71,7 @@ if st.button('Pick a Random Restaurant'):
     st.write("Randomly picked restaurant:", random_restaurant)
 
     current_date_1 = date.today().isoformat()
-    insert_query_1 = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID, R) VALUES ('{current_date_1}', '{random_restaurant}')"
+    insert_query_1 = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID) VALUES ('{current_date_1}', '{random_restaurant}')"
     cursor.execute(insert_query)
 # -------------------------------------------------------------------------------
 
