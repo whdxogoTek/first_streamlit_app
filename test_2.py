@@ -57,7 +57,7 @@ if st.button('Get Food List'):
     select_query = "SELECT * FROM FACT_RESTAURANT"
     cursor.execute(select_query)
     results = cursor.fetchall()
-    df = pd.DataFrame(results, columns=['Restaurant_ID', 'data_added_ID','Restaurant_Add_Name','Restaurant_Type'])
+    df = pd.DataFrame(results, columns=['F_Restaurant_ID', 'F_data_added_ID','F_Restaurant_Add_Name','F_Restaurant_Type'])
     st.write(df)
 
 st.markdown('#### 오늘의 점심식당 Pick!:')     
