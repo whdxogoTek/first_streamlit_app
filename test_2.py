@@ -64,7 +64,7 @@ st.markdown('#### 오늘의 점심식당 Pick!:')
 st.text('이제 점심식당을 골라볼까요? 😋')    
 
 # if st.button('Pick a Random Restaurant'):
-#     select_query = "SELECT Restaurant_ID FROM FACT_RESTAURANT"
+#     select_query = "SELECT F_Restaurant_ID FROM FACT_RESTAURANT"
 #     cursor.execute(select_query)
 #     results = cursor.fetchall()
 #     random_restaurant = random.choice(results)[0]
@@ -72,7 +72,7 @@ st.text('이제 점심식당을 골라볼까요? 😋')
       
 
 #     current_date_1 = date.today().isoformat()
-#     insert_query_1 = f"INSERT INTO dimension_visit_table (V_Visit_Date, V_Restaurant_ID) VALUES ('{current_date_1}', '{random_restaurant}')"
+#     insert_query_1 = f"INSERT INTO dimension_visit_table (D_Visit_Date, D_Restaurant_ID) VALUES ('{current_date_1}', '{random_restaurant}')"
 #     cursor.execute(insert_query_1)
 
 # -------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ import random
 import datetime
 
 # Generate random restaurant ID
-select_query = "SELECT Restaurant_ID FROM FACT_RESTAURANT"
+select_query = "SELECT F_Restaurant_ID FROM FACT_RESTAURANT"
 cursor.execute(select_query)
 results = cursor.fetchall()
 random_restaurant = random.choice(results)[0]
@@ -92,7 +92,7 @@ import random
 import datetime
 
 # Generate random restaurant ID
-select_query = "SELECT Restaurant_ID FROM FACT_RESTAURANT"
+select_query = "SELECT F_Restaurant_ID FROM FACT_RESTAURANT"
 cursor.execute(select_query)
 results = cursor.fetchall()
 random_restaurant = random.choice(results)[0]
@@ -104,13 +104,13 @@ if st.button('Pick a Random Restaurant'):
     current_date = datetime.date.today().isoformat()
 
     # Check if a record with the same restaurant ID and current date already exists
-    select_query = f"SELECT COUNT(*) FROM dimension_visit_table WHERE Visit_Date = '{current_date}' AND Restaurant_ID = '{random_restaurant}'"
+    select_query = f"SELECT COUNT(*) FROM dimension_visit_table WHERE D_Visit_Date = '{current_date}' AND D_Restaurant_ID = '{random_restaurant}'"
     cursor.execute(select_query)
     count = cursor.fetchone()[0]
 
     if count == 0:
         # Insert a new record if it doesn't already exist
-        insert_query = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
+        insert_query = f"INSERT INTO dimension_visit_table (D_Visit_Date, D_Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
         cursor.execute(insert_query)
         st.write("Randomly picked restaurant:", random_restaurant)
     else:
