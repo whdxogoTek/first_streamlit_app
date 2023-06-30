@@ -79,9 +79,13 @@ st.text('이제 점심식당을 골라볼까요? 😋')
 
 # ...
 
+import datetime
+
+# ...
+
 if st.button('Pick a Random Restaurant'):
     # Generate current date
-    current_date = date.today().isoformat()
+    current_date = datetime.date.today().isoformat()
 
     # Check if a record with the same restaurant ID and current date already exists
     select_query = f"SELECT COUNT(*) FROM dimension_visit_table WHERE Visit_Date = '{current_date}' AND Restaurant_ID = '{random_restaurant}'"
