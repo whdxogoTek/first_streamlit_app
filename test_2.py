@@ -82,10 +82,10 @@ import random
 import datetime
 
 # Generate random restaurant ID
-select_query = "SELECT F_Restaurant_ID FROM FACT_RESTAURANT"
-cursor.execute(select_query)
-results = cursor.fetchall()
-random_restaurant = random.choice(results)[0]
+# select_query = "SELECT F_Restaurant_ID FROM FACT_RESTAURANT"
+# cursor.execute(select_query)
+# results = cursor.fetchall()
+# random_restaurant = random.choice(results)[0]
 
 # ...
 import random
