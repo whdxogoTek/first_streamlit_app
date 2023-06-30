@@ -99,59 +99,25 @@ random_restaurant = random.choice(results)[0]
 
 # ...
 
-# if st.button('Pick a Random Restaurant'):
-#     # Generate current date
-#     current_date = datetime.date.today().isoformat()
-
-#     # Check if a record with the same restaurant ID and current date already exists
-#     select_query = f"SELECT COUNT(*) FROM dimension_visit_table WHERE Visit_Date = '{current_date}' AND Restaurant_ID = '{random_restaurant}'"
-#     cursor.execute(select_query)
-#     count = cursor.fetchone()[0]
-
-#     if count == 0:
-#         # Insert a new record if it doesn't already exist
-#         insert_query = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
-#         cursor.execute(insert_query)
-#         st.write("Randomly picked restaurant:", random_restaurant)
-#     else:
-#         st.write("Restaurant already picked for today:", random_restaurant)
-
-
-# --------------------------------------------------------------------------------------------------------------------------
-import random
-import datetime
-
-# Initialize the randomly selected restaurant for the day
-random_restaurant = None
-
-# ...
-
 if st.button('Pick a Random Restaurant'):
     # Generate current date
     current_date = datetime.date.today().isoformat()
 
-    if random_restaurant is None:
-        # Select a new random restaurant if it hasn't been selected yet for the day
-        select_query = "SELECT Restaurant_ID FROM FACT_RESTAURANT"
-        cursor.execute(select_query)
-        results = cursor.fetchall()
-        random_restaurant = random.choice(results)[0]
+    # Check if a record with the same restaurant ID and current date already exists
+    select_query = f"SELECT COUNT(*) FROM dimension_visit_table WHERE Visit_Date = '{current_date}' AND Restaurant_ID = '{random_restaurant}'"
+    cursor.execute(select_query)
+    count = cursor.fetchone()[0]
 
-        # Insert the initial record for the day
+    if count == 0:
+        # Insert a new record if it doesn't already exist
         insert_query = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
         cursor.execute(insert_query)
+        st.write("Randomly picked restaurant:", random_restaurant)
     else:
-        # Check if a record with the same restaurant ID and current date already exists
-        select_query = f"SELECT COUNT(*) FROM dimension_visit_table WHERE Visit_Date = '{current_date}' AND Restaurant_ID = '{random_restaurant}'"
-        cursor.execute(select_query)
-        count = cursor.fetchone()[0]
+        st.write("Restaurant already picked for today:", random_restaurant)
 
-        if count == 0:
-            # Insert a new record if it doesn't already exist
-            insert_query = f"INSERT INTO dimension_visit_table (Visit_Date, Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
-            cursor.execute(insert_query)
 
-    st.write("Randomly picked restaurant:", random_restaurant)
+# --------------------------------------------------------------------------------------------------------------------------
 
 
 
