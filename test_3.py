@@ -54,7 +54,7 @@ random_restaurant = random.choice(results)[0]
 
 if st.button('오늘의 점심 선택하기'):
     # Generate current date
-    current_date = datetime.date.today().isoformat()
+    current_date = datetime.now(timezone('Asia/Seoul'))
 
     # Check if a record with the same restaurant ID and current date already exists
     select_query = f"SELECT COUNT(*) FROM Visit_Restaurant WHERE V_Visit_Date = '{current_date}' AND V_Restaurant_ID = '{random_restaurant}'"
@@ -70,8 +70,6 @@ if st.button('오늘의 점심 선택하기'):
         st.write("Restaurant already picked for today:", random_restaurant)
 
 
-from datetime import datetime
-from pytz import timezone
 
 
 
