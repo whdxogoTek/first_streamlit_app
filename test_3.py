@@ -63,7 +63,7 @@ if st.button('오늘의 점심 선택하기'):
         cursor.execute(insert_query)
         st.write("오늘의 랜덤 식당!:", random_restaurant)
     else:
-        st.write(random_restaurant)
+        st.write("Restaurant already picked for today:", random_restaurant)
 
 
 
