@@ -7,6 +7,7 @@ import seaborn
 import numpy
 import random
 from datetime import date
+import datetime
 
 st.title("식사를 합시다. 😎")
 st.markdown('#### 점심식당 정하기!')    
@@ -50,7 +51,7 @@ random_restaurant = random.choice(results)[0]
 
 if st.button('오늘의 점심 선택하기'):
     # Generate current date
-    current_date = date.today().isoformat()
+    current_date = datetime.date.today().isoformat()
 
     # Check if a record with the same restaurant ID and current date already exists
     select_query = f"SELECT COUNT(*) FROM Visit_Restaurant WHERE V_Visit_Date = '{current_date}' AND V_Restaurant_ID = '{random_restaurant}'"
