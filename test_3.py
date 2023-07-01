@@ -53,7 +53,7 @@ if st.button('오늘의 점심 선택하기'):
     current_date = datetime.date.today().isoformat()
 
     # Check if a record with the same restaurant ID and current date already exists
-    select_query = f"SELECT COUNT(*) FROM Visit_Restaurant WHERE ㄲ_Visit_Date = '{current_date}' AND V_Restaurant_ID = '{random_restaurant}'"
+    select_query = f"SELECT COUNT(*) FROM Visit_Restaurant WHERE V_Visit_Date = '{current_date}' AND V_Restaurant_ID = '{random_restaurant}'"
     cursor.execute(select_query)
     count = cursor.fetchone()[0]
 
