@@ -47,26 +47,17 @@ if st.button('식당 데이터 보기'):
 st.markdown('#### 오늘의 점심식당 Pick!:')     
 st.text('이제 점심식당을 골라볼까요? 😋')    
 
-select_query = "SELECT I_Restaurant_ID FROM Insert_Restaurant"
-cursor.execute(select_query)
-results = cursor.fetchall()
-random_restaurant = random.choice(results)[0]
-
-if st.button('Pick today\'s lunch'):
-
-    # Check if a record with the same restaurant ID and current date already exists
-    select_query = f"SELECT COUNT(*) FROM Visit_Restaurant WHERE V_Visit_Date = '{current_date}' AND V_Restaurant_ID = '{random_restaurant}'"
+if st.button('오늘의 점심 선택하기'):
+    select_query = "SELECT I_Restaurant_ID FROM Insert_Restaurant"
     cursor.execute(select_query)
-    count = cursor.fetchone()[0]
+    results = cursor.fetchall()
+    random_restaurant = random.choice(results)[0]
+    st.write("선택된 식당:", random_restaurant)
+      
 
-    if count == 0:
-        # Insert a new record if it doesn't already exist
-        insert_query = f"INSERT INTO Visit_Restaurant (V_Visit_Date, V_Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
-        cursor.execute(insert_query)
-        connection.commit()  # Commit the changes to the database
-        st.write("Random Restaurant of the Day:", random_restaurant)
-    else:
-        st.write("Restaurant already picked for today:", random_restaurant)
+    current_date =  datetime.now(timezone('Asia/Seoul'))
+    insert_query_1 = f"INSERT INTO Visit_Restaurant (V_Visit_Date, V_Restaurant_ID) VALUES ('{current_date}', '{random_restaurant}')"
+    cursor.execute(insert_query_1)
 
 
 
