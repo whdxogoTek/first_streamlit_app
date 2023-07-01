@@ -9,6 +9,9 @@ import random
 from datetime import date
 import datetime
 
+from datetime import datetime
+from pytz import timezone
+
 st.title("식사를 합시다. 😎")
 st.markdown('#### 점심식당 정하기!')    
 st.text('🥗 더 이상 어디갈지 고민은 그만!')
@@ -27,8 +30,7 @@ added_by = st.text_input('식당을 추가한 당신의 이름을 작성해주�
 
 if st.button('식당 추가'):
     # Get the current date
-    current_date = date.today().isoformat()
-
+    current_date =  datetime.now(timezone('Asia/Seoul')) #  date.today().isoformat()
     insert_query = f"INSERT INTO Insert_Restaurant (I_Restaurant_ID, I_data_added_ID, I_Restaurant_Add_Name, I_Restaurant_Type) VALUES ('{restaurant_name}', '{current_date}', '{added_by}', '{restaurant_type}')"
     cursor.execute(insert_query)
     my_cnx.commit()
@@ -40,6 +42,7 @@ if st.button('식당 데이터 보기'):
     results = cursor.fetchall()
     df = pd.DataFrame(results, columns=['I_Restaurant_ID', 'I_data_added_ID','I_Restaurant_Add_Name','I_Restaurant_Type'])
     st.write(df)
+
 
 st.markdown('#### 오늘의 점심식당 Pick!:')     
 st.text('이제 점심식당을 골라볼까요? 😋')    
@@ -65,6 +68,12 @@ if st.button('오늘의 점심 선택하기'):
         st.write("오늘의 랜덤 식당!:", random_restaurant)
     else:
         st.write("Restaurant already picked for today:", random_restaurant)
+
+
+from datetime import datetime
+from pytz import timezone
+
+
 
 
 
