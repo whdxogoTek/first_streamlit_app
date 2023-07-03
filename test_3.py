@@ -31,7 +31,8 @@ added_by = st.text_input('식당을 추가한 당신의 이름을 작성해주�
 if st.button('식당 추가'):
     # Get the current date
     current_date =  datetime.now(timezone('Asia/Seoul')) #  date.today().isoformat()
-    insert_query = f"INSERT INTO Insert_Restaurant (I_Restaurant_ID, I_data_added_ID, I_Restaurant_Add_Name, I_Restaurant_Type) VALUES ('{restaurant_name}', '{current_date}', '{added_by}', '{restaurant_type}')"
+    # insert_query = f"INSERT INTO Insert_Restaurant (I_Restaurant_ID, I_data_added_ID, I_Restaurant_Add_Name, I_Restaurant_Type) VALUES ('{restaurant_name}', '{current_date}', '{added_by}', '{restaurant_type}')"
+    insert_query = "INSERT INTO Insert_Restaurant (I_Restaurant_ID, I_data_added_ID, I_Restaurant_Add_Name, I_Restaurant_Type) VALUES ('{}', '{}', '{}', '{}')".format(restaurant_name, current_date, added_by, restaurant_type)
     cursor.execute(insert_query)
     my_cnx.commit()
     st.success('식당 추가 완료!')
